@@ -9,7 +9,7 @@ function Hero() {
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/hero-main.png')", animation: 'kenburns 15s ease-in-out infinite alternate' }}
+          style={{ backgroundImage: "url('/hero-main.webp')", animation: 'kenburns 15s ease-in-out infinite alternate' }}
         >
           <div className="absolute inset-0 bg-black/40" />
         </div>

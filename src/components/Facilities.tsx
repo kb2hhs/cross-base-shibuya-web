@@ -1,17 +1,17 @@
 function Facilities() {
   const rooms = [
     {
-      image: '/facilities-bedroom-1.png',
+      image: '/facilities-bedroom-1.webp',
       title: 'Bedroom 1',
       description: '2 double beds and 1 futon bed',
     },
     {
-      image: '/facilities-bedroom-2.png',
+      image: '/facilities-bedroom-2.webp',
       title: 'Bedroom 2',
       description: '3 double beds and 1 futon bed',
     },
     {
-      image: '/facilities-living-area.png',
+      image: '/facilities-living-area.webp',
       title: 'Living Area',
       description: '',
     },
