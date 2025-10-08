@@ -1,11 +1,17 @@
+import { useRef } from 'react';
+import useIntersectionObserver from './useIntersectionObserver';
+
 function Location() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+
   return (
-    <section className="py-8 md:py-12 px-6 md:px-10 max-w-4xl mx-auto">
-      <h2 className="text-2xl md:text-5xl font-orbitron font-bold tracking-wide text-white uppercase mb-8 md:mb-12">
+    <section ref={sectionRef} className={`section-container fade-in ${isVisible ? 'visible' : ''}`}>
+      <h2 className="section-heading">
         Location
       </h2>
 
-      <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-8 max-w-2xl">
+      <p className="section-content mb-8 max-w-2xl">
         Just a 2-minute walk from Shibuya Station, Cross Base Shibuya is
         perfectly located near the iconic Hachiko Statue, the famous Shibuya
         Scramble Crossing, and Shibuya Center Town shopping district. Experience
@@ -13,8 +19,8 @@ function Location() {
       </p>
 
       <div className="mb-8">
-        <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-          <span className="font-orbitron font-semibold text-white">ADDRESS:</span>
+        <p className="section-content">
+          <span className="section-text-highlight">ADDRESS:</span>
           <br />
           WAVE Dogenzaka Bldg. 5F, 1-15-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043
           <br />
@@ -22,7 +28,7 @@ function Location() {
         </p>
       </div>
 
-      <div className="w-full aspect-video overflow-hidden">
+      <div className="w-full aspect-video overflow-hidden rounded-lg">
         <iframe
           src="https://maps.google.com/maps?hl=en&q=cross base shibuya&t=&z=15&ie=UTF8&iwloc=B&output=embed"
           width="100%"
@@ -32,7 +38,7 @@ function Location() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Cross Base Shibuya Location"
-          className="w-full h-full"
+          className="w-full h-full transition-transform duration-300 hover:scale-105"
         />
       </div>
     </section>

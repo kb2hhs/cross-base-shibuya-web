@@ -1,4 +1,11 @@
+import { useRef, useState } from 'react';
+import useIntersectionObserver from './useIntersectionObserver';
+
 function Facilities() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+
   const rooms = [
     {
       image: '/facilities-bedroom-1.webp',
@@ -17,13 +24,17 @@ function Facilities() {
     },
   ];
 
+  const handleImageLoad = (index: number) => {
+    setLoadedImages(prev => new Set(prev).add(index));
+  };
+
   return (
-    <section className="py-8 md:py-12 px-6 md:px-10 max-w-4xl mx-auto">
+    <section ref={sectionRef} className={`section-container slide-in-right ${isVisible ? 'visible' : ''}`}>
       <h2 className="section-heading">
         Facilities
       </h2>
 
-      <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-12 md:mb-16 max-w-2xl">
+      <p className="section-content mb-12 md:mb-16 max-w-2xl">
         Spacious apartment in the heart of Tokyo city centre with two bedrooms,
         two bathrooms, a comfortable living area and a fully equipped
         kitchenette.
@@ -32,11 +43,16 @@ function Facilities() {
       <div className="space-y-12 md:space-y-16">
         {rooms.map((room, index) => (
           <div key={index} className="space-y-4">
-            <div className="relative w-full aspect-[16/9] overflow-hidden">
+            <div className="relative w-full aspect-[16/9] image-zoom">
+              {!loadedImages.has(index) && (
+                <div className="skeleton w-full h-full absolute inset-0" />
+              )}
               <img
                 src={room.image}
                 alt={room.title}
                 className="w-full h-full object-cover"
+                onLoad={() => handleImageLoad(index)}
+                style={{ opacity: loadedImages.has(index) ? 1 : 0 }}
               />
             </div>
             <div>
@@ -44,7 +60,7 @@ function Facilities() {
                 {room.title}
               </h3>
               {room.description && (
-                <p className="text-sm md:text-base text-gray-400 font-light">
+                <p className="section-content text-gray-400 font-light">
                   {room.description}
                 </p>
               )}
