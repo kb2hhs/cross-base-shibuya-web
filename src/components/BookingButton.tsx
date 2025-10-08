@@ -10,7 +10,7 @@ const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
           href={bookingUrl}
           target="_blank"
           rel="noopener"
-          className="pulse-hover block w-full bg-neon-red hover:bg-neon-red-bright text-white text-center text-2xl md:text-xl font-orbitron font-bold py-4 px-12 rounded-xl tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(220,0,0,0.5)]"
+          className="pulse-hover block w-full bg-neon-red hover:bg-neon-red-bright text-white text-center text-lg md:text-xl font-orbitron font-bold py-4 px-12 rounded-xl tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(220,0,0,0.5)]"
         >
           Check Availability
         </a>
