@@ -19,7 +19,7 @@ function Facilities() {
 
   return (
     <section className="py-8 md:py-12 px-6 md:px-10 max-w-4xl mx-auto">
-      <h2 className="text-3xl md:text-5xl font-orbitron font-bold tracking-wide text-white uppercase mb-8 md:mb-12">
+      <h2 className="section-heading">
         Facilities
       </h2>
 
@@ -32,7 +32,7 @@ function Facilities() {
       <div className="space-y-12 md:space-y-16">
         {rooms.map((room, index) => (
           <div key={index} className="space-y-4">
-            <div className="relative w-full aspect-[4/3] overflow-hidden">
+            <div className="relative w-full aspect-[16/9] overflow-hidden">
               <img
                 src={room.image}
                 alt={room.title}

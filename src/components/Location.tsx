@@ -1,7 +1,7 @@
 function Location() {
   return (
     <section className="py-8 md:py-12 px-6 md:px-10 max-w-4xl mx-auto">
-      <h2 className="text-3xl md:text-5xl font-orbitron font-bold tracking-wide text-white uppercase mb-8 md:mb-12">
+      <h2 className="text-2xl md:text-5xl font-orbitron font-bold tracking-wide text-white uppercase mb-8 md:mb-12">
         Location
       </h2>
 
@@ -16,15 +16,15 @@ function Location() {
         <p className="text-sm md:text-base text-gray-300 leading-relaxed">
           <span className="font-orbitron font-semibold text-white">ADDRESS:</span>
           <br />
-          2-25-17 Dogenzaka, Shibuya-ku, Tokyo 150-0043
+          WAVE Dogenzaka Bldg. 5F, 1-15-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043
           <br />
-          東京都渋谷区道玄坂2-25-17
+          〒150-0043 東京都渋谷区道玄坂1-15-8 WAVE道玄坂ビル 5F
         </p>
       </div>
 
       <div className="w-full aspect-video overflow-hidden">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.4947347842643!2d139.69738731525822!3d35.65844638019742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5e9b2e3b45%3A0x3b0b3b0b0b0b0b0b!2s2-ch%C5%8Dme-25-17%20D%C5%8Dgenzaka%2C%20Shibuya%20City%2C%20Tokyo%20150-0043!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp"
+          src="https://maps.google.com/maps?hl=en&q=cross base shibuya&t=&z=15&ie=UTF8&iwloc=B&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0 }}
