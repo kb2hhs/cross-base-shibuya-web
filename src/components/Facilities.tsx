@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from '../i18n';
 import useIntersectionObserver from './useIntersectionObserver';
 
 function Facilities() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
@@ -9,18 +11,18 @@ function Facilities() {
   const rooms = [
     {
       image: '/facilities-bedroom-1.webp',
-      title: 'Bedroom 1',
-      description: '2 double beds and 1 futon bed',
+      title: t.facilities.bedroom1.title,
+      description: t.facilities.bedroom1.description,
     },
     {
       image: '/facilities-bedroom-2.webp',
-      title: 'Bedroom 2',
-      description: '3 double beds and 1 futon bed',
+      title: t.facilities.bedroom2.title,
+      description: t.facilities.bedroom2.description,
     },
     {
       image: '/facilities-living-area.webp',
-      title: 'Living Area',
-      description: '',
+      title: t.facilities.livingArea.title,
+      description: t.facilities.livingArea.description,
     },
   ];
 
@@ -31,13 +33,11 @@ function Facilities() {
   return (
     <section id="facilities" ref={sectionRef} className={`section-container slide-in-right ${isVisible ? 'visible' : ''}`}>
       <h2 className="section-heading">
-        Facilities
+        {t.facilities.heading}
       </h2>
 
       <p className="section-content mb-12 md:mb-16 max-w-2xl">
-        Spacious apartment in the heart of Tokyo city centre with two bedrooms,
-        two bathrooms, a comfortable living area and a fully equipped
-        kitchenette.
+        {t.facilities.description}
       </p>
 
       <div className="space-y-12 md:space-y-16">

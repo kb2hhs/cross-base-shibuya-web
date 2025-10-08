@@ -1,30 +1,29 @@
 import { useRef } from 'react';
+import { useTranslation } from '../i18n';
 import useIntersectionObserver from './useIntersectionObserver';
 
 function Location() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   return (
     <section id="location" ref={sectionRef} className={`section-container fade-in ${isVisible ? 'visible' : ''}`}>
       <h2 className="section-heading">
-        Location
+        {t.location.heading}
       </h2>
 
       <p className="section-content mb-8 max-w-2xl">
-        Just a 2-minute walk from Shibuya Station, Cross Base Shibuya is
-        perfectly located near the iconic Hachiko Statue, the famous Shibuya
-        Scramble Crossing, and Shibuya Center Town shopping district. Experience
-        the vibrant heart of Tokyo at your doorstep.
+        {t.location.description}
       </p>
 
       <div className="mb-8">
         <p className="section-content">
-          <span className="section-text-highlight">ADDRESS:</span>
+          <span className="section-text-highlight">{t.location.addressLabel}</span>
           <br />
-          WAVE Dogenzaka Bldg. 5F, 1-15-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043
+          {t.location.addressLine1}
           <br />
-          〒150-0043 東京都渋谷区道玄坂1-15-8 WAVE道玄坂ビル 5F
+          {t.location.addressLine2}
         </p>
       </div>
 

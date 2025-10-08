@@ -1,27 +1,17 @@
-import { useRef } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Facilities from './components/Facilities';
-import Location from './components/Location';
-import BookingButton from './components/BookingButton';
-import FloatingReserveButton from './components/FloatingReserveButton';
-import useIntersectionObserver from './components/useIntersectionObserver';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LocalizedApp from './pages/LocalizedApp';
 
 function App() {
-  const bookingButtonRef = useRef<HTMLElement>(null);
-  const isBookingButtonVisible = useIntersectionObserver(bookingButtonRef, {
-    rootMargin: '0px 0px -100px 0px', // 画面下部から100px手前で検知
-  });
-
   return (
-    <div className="min-h-screen bg-black">
-      <Navbar />
-      <Hero />
-      <Facilities />
-      <Location />
-      <BookingButton ref={bookingButtonRef} />
-      <FloatingReserveButton isHidden={isBookingButtonVisible} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LocalizedApp language="en" />} />
+        <Route path="/ja" element={<LocalizedApp language="ja" />} />
+        <Route path="/zh-cn" element={<LocalizedApp language="zh-cn" />} />
+        <Route path="/zh-tw" element={<LocalizedApp language="zh-tw" />} />
+        <Route path="/ko" element={<LocalizedApp language="ko" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from '../i18n';
 
 function Hero() {
+  const { t } = useTranslation();
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -35,13 +37,13 @@ function Hero() {
         <div className="relative z-10 text-center px-6">
           <h1
             className="glitch-text text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold tracking-wide text-white uppercase"
-            data-text="Cross Base Shibuya"
+            data-text={t.hero.title}
             style={{
               textShadow: '0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.3)',
               transform: `translateY(${scrollY * -0.3}px)`
             }}
           >
-            Cross Base Shibuya
+            {t.hero.title}
           </h1>
         </div>
       </section>

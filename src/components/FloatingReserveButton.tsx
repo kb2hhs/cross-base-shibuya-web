@@ -1,11 +1,13 @@
 import { HiChevronDoubleRight } from "react-icons/hi2";
 import { useState } from "react";
+import { useTranslation } from '../i18n';
 
 interface FloatingReserveButtonProps {
   isHidden?: boolean;
 }
 
 function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps) {
+  const { t } = useTranslation();
   const bookingUrl = 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search';
   const [isPressed, setIsPressed] = useState(false);
 
@@ -34,7 +36,7 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
         `}
       >
         <HiChevronDoubleRight className="mr-2 h-6 w-6 transition-transform" />
-        <span className="transition-all">RESERVE</span>
+        <span className="transition-all">{t.floating.reserve.toUpperCase()}</span>
       </a>
     </div>
   );

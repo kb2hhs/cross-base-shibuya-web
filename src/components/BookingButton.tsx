@@ -1,6 +1,8 @@
 import { forwardRef } from 'react';
+import { useTranslation } from '../i18n';
 
 const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
+  const { t } = useTranslation();
   const bookingUrl = 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search';
 
   return (
@@ -12,7 +14,7 @@ const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
           rel="noopener"
           className="pulse-hover block w-full bg-neon-red hover:bg-neon-red-bright text-white text-center text-lg md:text-xl font-orbitron font-bold py-4 px-12 rounded-xl tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(220,0,0,0.5)]"
         >
-          Check Availability
+          {t.booking.checkAvailability}
         </a>
       </div>
     </section>
