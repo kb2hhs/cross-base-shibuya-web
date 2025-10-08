@@ -13,7 +13,7 @@ function Hero() {
   }, []);
 
   return (
-    <div className="w-full md:px-10">
+    <div id="home" className="w-full md:px-10">
       <section
         className="
           relative w-full h-[33vh] md:h-[50vh]

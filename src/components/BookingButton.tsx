@@ -4,7 +4,7 @@ const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
   const bookingUrl = 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search';
 
   return (
-    <section className="py-10 md:py-16 px-6" ref={ref}>
+    <section id="reserve" className="py-10 md:py-16 px-6" ref={ref}>
       <div className="max-w-md mx-auto">
         <a
           href={bookingUrl}

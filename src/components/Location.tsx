@@ -6,7 +6,7 @@ function Location() {
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   return (
-    <section ref={sectionRef} className={`section-container fade-in ${isVisible ? 'visible' : ''}`}>
+    <section id="location" ref={sectionRef} className={`section-container fade-in ${isVisible ? 'visible' : ''}`}>
       <h2 className="section-heading">
         Location
       </h2>

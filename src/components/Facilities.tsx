@@ -29,7 +29,7 @@ function Facilities() {
   };
 
   return (
-    <section ref={sectionRef} className={`section-container slide-in-right ${isVisible ? 'visible' : ''}`}>
+    <section id="facilities" ref={sectionRef} className={`section-container slide-in-right ${isVisible ? 'visible' : ''}`}>
       <h2 className="section-heading">
         Facilities
       </h2>

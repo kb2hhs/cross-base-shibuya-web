@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Facilities from './components/Facilities';
 import Location from './components/Location';
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black">
+      <Navbar />
       <Hero />
       <Facilities />
       <Location />
