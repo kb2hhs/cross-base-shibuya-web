@@ -16,23 +16,31 @@ export const en: Translations = {
   },
   facilities: {
     heading: 'Facilities',
-    description: 'Spacious apartment in the heart of Tokyo city centre with two bedrooms, two bathrooms, a comfortable living area and a fully equipped kitchenette.',
+    description: '6 minutes from Shibuya Station. Enjoy an entire 110㎡ floor all to yourself in the heart of the city! Two bedrooms accommodate up to 14 people.',
     bedroom1: {
       title: 'Bedroom 1',
-      description: '2 double beds and 1 futon bed',
+      description: '2 double beds, 1 foldable double mattress',
     },
     bedroom2: {
       title: 'Bedroom 2',
-      description: '3 double beds and 1 futon bed',
+      description: '3 double beds, 1 foldable double mattress',
     },
     livingArea: {
-      title: 'Living Area',
-      description: '',
+      title: 'Living area',
+      description: 'Colorful sofas, electronic darts machine and board games, 100-inch screen for movies. A DJ controller and speakers let you play your own music.',
+    },
+    kitchen: {
+      title: 'Kitchen',
+      description: 'Fully equipped with refrigerator, microwave, toasters, induction cooktop, cooking utensils, and tableware.',
+    },
+    bathroom: {
+      title: 'Bathroom & Laundry',
+      description: 'Separate bath and toilet. Equipped with washing machine, dryer, and basic toiletries.',
     },
   },
   location: {
     heading: 'Location',
-    description: 'Just a 2-minute walk from Shibuya Station, Cross Base Shibuya is perfectly located near the iconic Hachiko Statue, the famous Shibuya Scramble Crossing, and Shibuya Center Town shopping district. Experience the vibrant heart of Tokyo at your doorstep.',
+    description: '6 minutes walk from Shibuya Station. Just a few steps to the Scramble Crossing, and Shibuya Center Town shopping district. Experience the vibrant heart of Tokyo at your doorstep!',
     addressLabel: 'ADDRESS:',
     addressLine1: 'WAVE Dogenzaka Bldg. 5F, 1-15-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043',
     addressLine2: '〒150-0043 東京都渋谷区道玄坂1-15-8 WAVE道玄坂ビル 5F',

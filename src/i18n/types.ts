@@ -27,6 +27,14 @@ export type Translations = {
       title: string;
       description: string;
     };
+    kitchen: {
+      title: string;
+      description: string;
+    };
+    bathroom: {
+      title: string;
+      description: string;
+    };
   };
   location: {
     heading: string;

@@ -29,6 +29,14 @@ export const zhCN: Translations = {
       title: '起居区',
       description: '',
     },
+    kitchen: {
+      title: '厨房',
+      description: '配备冰箱、微波炉、烤面包机、电磁炉、烹饪用具和餐具。',
+    },
+    bathroom: {
+      title: '浴室和洗衣房',
+      description: '浴室和厕所分离。配备洗衣机、烘干机和基本洗漱用品。',
+    },
   },
   location: {
     heading: '位置',

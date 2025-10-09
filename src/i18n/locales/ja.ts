@@ -29,6 +29,14 @@ export const ja: Translations = {
       title: 'リビングエリア',
       description: '',
     },
+    kitchen: {
+      title: 'キッチン',
+      description: '冷蔵庫、電子レンジ、トースター、IH調理器、調理器具、食器を完備。',
+    },
+    bathroom: {
+      title: 'バスルーム＆ランドリー',
+      description: 'バス・トイレ別。洗濯機、乾燥機、基本的なアメニティを完備。',
+    },
   },
   location: {
     heading: '立地',

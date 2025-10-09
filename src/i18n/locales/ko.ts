@@ -29,6 +29,14 @@ export const ko: Translations = {
       title: '거실',
       description: '',
     },
+    kitchen: {
+      title: '주방',
+      description: '냉장고, 전자레인지, 토스터기, 인덕션, 조리기구, 식기를 완비했습니다.',
+    },
+    bathroom: {
+      title: '욕실 및 세탁실',
+      description: '욕조와 화장실이 분리되어 있습니다. 세탁기, 건조기, 기본 세면도구를 완비했습니다.',
+    },
   },
   location: {
     heading: '위치',

@@ -29,6 +29,14 @@ export const zhTW: Translations = {
       title: '起居區',
       description: '',
     },
+    kitchen: {
+      title: '廚房',
+      description: '配備冰箱、微波爐、烤麵包機、電磁爐、烹飪用具和餐具。',
+    },
+    bathroom: {
+      title: '浴室和洗衣房',
+      description: '浴室和廁所分離。配備洗衣機、烘乾機和基本洗漱用品。',
+    },
   },
   location: {
     heading: '位置',
