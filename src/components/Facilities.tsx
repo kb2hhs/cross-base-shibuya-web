@@ -9,6 +9,8 @@ function Facilities() {
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const [carouselIndex, setCarouselIndex] = useState<Record<number, number>>({});
+  const [touchStart, setTouchStart] = useState<Record<number, number>>({});
+  const [touchEnd, setTouchEnd] = useState<Record<number, number>>({});
 
   const rooms: Array<{
     image?: string;
@@ -32,12 +34,12 @@ function Facilities() {
       description: t.facilities.bedroom2.description,
     },
     {
-      image: '/kitchen_Z9S_3124.jpg',
+      image: '/kitchen_Z9S_3124.webp',
       title: t.facilities.kitchen.title,
       description: t.facilities.kitchen.description,
     },
     {
-      images: ['/shower_Z9S_1743.jpg', '/laundry_Z9S_1724.jpg'],
+      images: ['/shower_Z9S_1743.webp', '/laundry_Z9S_1724.webp'],
       title: t.facilities.bathroom.title,
       description: t.facilities.bathroom.description,
     },
@@ -66,6 +68,32 @@ function Facilities() {
       ...prev,
       [roomIndex]: slideIndex,
     }));
+  };
+
+  const handleTouchStart = (roomIndex: number, e: React.TouchEvent) => {
+    setTouchStart(prev => ({ ...prev, [roomIndex]: e.touches[0].clientX }));
+    setTouchEnd(prev => ({ ...prev, [roomIndex]: e.touches[0].clientX }));
+  };
+
+  const handleTouchMove = (roomIndex: number, e: React.TouchEvent) => {
+    setTouchEnd(prev => ({ ...prev, [roomIndex]: e.touches[0].clientX }));
+  };
+
+  const handleTouchEnd = (roomIndex: number, totalImages: number) => {
+    const startX = touchStart[roomIndex] || 0;
+    const endX = touchEnd[roomIndex] || 0;
+    const diff = startX - endX;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(diff) > minSwipeDistance) {
+      if (diff > 0) {
+        // Swiped left, go to next slide
+        handleNextSlide(roomIndex, totalImages);
+      } else {
+        // Swiped right, go to previous slide
+        handlePrevSlide(roomIndex, totalImages);
+      }
+    }
   };
 
   return (
@@ -104,7 +132,12 @@ function Facilities() {
                 {/* Carousel Display */}
                 {room.images && (
                   <>
-                    <div className="relative w-full h-full overflow-hidden">
+                    <div
+                      className="relative w-full h-full overflow-hidden"
+                      onTouchStart={(e) => handleTouchStart(index, e)}
+                      onTouchMove={(e) => handleTouchMove(index, e)}
+                      onTouchEnd={() => handleTouchEnd(index, room.images!.length)}
+                    >
                       <div
                         className="flex transition-transform duration-500 ease-in-out h-full"
                         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -126,17 +159,17 @@ function Facilities() {
                       <>
                         <button
                           onClick={() => handlePrevSlide(index, room.images!.length)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+                          className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:text-cyan-400 transition-colors z-10 drop-shadow-lg"
                           aria-label="Previous image"
                         >
-                          <ChevronLeft className="w-6 h-6" />
+                          <ChevronLeft className="w-8 h-8" />
                         </button>
                         <button
                           onClick={() => handleNextSlide(index, room.images!.length)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:text-cyan-400 transition-colors z-10 drop-shadow-lg"
                           aria-label="Next image"
                         >
-                          <ChevronRight className="w-6 h-6" />
+                          <ChevronRight className="w-8 h-8" />
                         </button>
                       </>
                     )}

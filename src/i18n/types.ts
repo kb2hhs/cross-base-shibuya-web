@@ -49,6 +49,10 @@ export type Translations = {
   };
   floating: {
     reserve: string;
+    bookAtBestRate: {
+      line1: string;
+      line2: string;
+    };
   };
 };
 

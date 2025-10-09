@@ -16,18 +16,18 @@ export const ja: Translations = {
   },
   facilities: {
     heading: '施設案内',
-    description: '東京都心にある広々としたアパートメント。2つのベッドルーム、2つのバスルーム、快適なリビングエリア、設備の整ったキッチンネットを完備。',
+    description: '渋谷駅から徒歩6分。都心の一等地で110㎡のフロアを丸ごと貸切！2つのベッドルームで最大14名様までご利用いただけます。',
     bedroom1: {
       title: 'ベッドルーム 1',
-      description: 'ダブルベッド2台と布団1組',
+      description: 'ダブルベッド2台、折りたたみ式ダブルマットレス1組',
     },
     bedroom2: {
       title: 'ベッドルーム 2',
-      description: 'ダブルベッド3台と布団1組',
+      description: 'ダブルベッド3台、折りたたみ式ダブルマットレス1組',
     },
     livingArea: {
       title: 'リビングエリア',
-      description: '',
+      description: 'カラフルなソファ、電子ダーツマシン、ボードゲーム、100インチスクリーンで映画鑑賞。DJコントローラーとスピーカーで自分の音楽を流せます。',
     },
     kitchen: {
       title: 'キッチン',
@@ -40,7 +40,7 @@ export const ja: Translations = {
   },
   location: {
     heading: '立地',
-    description: '渋谷駅から徒歩わずか2分、クロスベース渋谷は、象徴的なハチ公像、有名な渋谷スクランブル交差点、渋谷センター街ショッピング街の近くに完璧に位置しています。玄関先で東京の活気ある中心部を体験してください。',
+    description: '渋谷駅から徒歩6分。スクランブル交差点や渋谷センター街ショッピング街まですぐ。玄関先で東京の活気ある中心部を体験してください！',
     addressLabel: '住所:',
     addressLine1: '〒150-0043 東京都渋谷区道玄坂1-15-8 WAVE道玄坂ビル 5F',
     addressLine2: 'WAVE Dogenzaka Bldg. 5F, 1-15-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043',
@@ -51,5 +51,9 @@ export const ja: Translations = {
   },
   floating: {
     reserve: '予約',
+    bookAtBestRate: {
+      line1: 'ベストレートで',
+      line2: '今すぐ予約 !',
+    },
   },
 };

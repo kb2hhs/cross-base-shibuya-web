@@ -87,9 +87,13 @@ function Navbar() {
           {/* Logo */}
           <a
             href="#home"
-            className="text-xl md:text-2xl font-orbitron font-bold text-white hover:text-cyan-400 transition-colors"
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
-            CROSS BASE
+            <img
+              src="/施設ロゴ_渋谷共有用.png"
+              alt="Cross Base Shibuya"
+              className="h-10 w-auto"
+            />
           </a>
 
           {/* Desktop Menu */}

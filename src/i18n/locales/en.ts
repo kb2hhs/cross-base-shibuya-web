@@ -51,5 +51,9 @@ export const en: Translations = {
   },
   floating: {
     reserve: 'Reserve',
+    bookAtBestRate: {
+      line1: 'Book at the',
+      line2: 'Best Rate !',
+    },
   },
 };
