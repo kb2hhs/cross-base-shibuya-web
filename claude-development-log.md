@@ -947,3 +947,441 @@ src/
 ```
 
 この多言語化実装により、Cross Base Shibuyaは国際的なユーザーに対応し、SEO最適化されたグローバルなWebサイトとなりました。
+
+### 2025-10-09 - モバイルメニューUI改善とベストレートバッジ追加
+
+#### タスクの詳細
+- **インタラクションの種類**: UX改善とコンバージョン最適化
+- **使用ツール**: React Hooks (useRef, useEffect), CSS Animations, lucide-react
+- **主要目的**: モバイルメニューの使いやすさ向上と予約促進
+
+#### ヒーロー画像とFacilities順序の変更
+
+**ヒーロー画像の差し替え**:
+- 変更箇所: `src/components/Hero.tsx:29`
+- 変更内容: `/hero-main.webp` → `/facilities-living-area.webp`
+- グリッチエフェクトを削除し、シンプルなKenburnsアニメーションのみに
+- **理由**: Living Areaを最初に見せることで物件の広さをアピール
+
+**Facilitiesの画像順序入れ替え**:
+- 変更前: Bedroom 1 → Bedroom 2 → Living Area
+- 変更後: Living Area → Bedroom 1 → Bedroom 2
+- **効果**: ヒーロー画像との統一感、訴求力の向上
+
+#### モバイルメニューUI改善
+
+##### 1. UX機能追加
+
+**メニュー外クリックで閉じる機能**:
+```typescript
+const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node) && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  if (isMobileMenuOpen) {
+    document.addEventListener('mousedown', handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [isMobileMenuOpen]);
+```
+
+**技術仕様**:
+- `useRef`でメニュー要素への参照を取得
+- `mousedown`イベントでクリック位置を検知
+- `contains()`メソッドでメニュー内外を判定
+- クリーンアップ関数でメモリリーク防止
+
+**スクロール時に閉じる機能**:
+```typescript
+useEffect(() => {
+  const handleScrollClose = () => {
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  if (isMobileMenuOpen) {
+    window.addEventListener('scroll', handleScrollClose, { passive: true });
+  }
+
+  return () => {
+    window.removeEventListener('scroll', handleScrollClose);
+  };
+}, [isMobileMenuOpen]);
+```
+
+**UX効果**:
+- 直感的なメニュー操作
+- ユーザーの操作意図を汲んだ挙動
+- スクロール開始時に自動でメニューが邪魔にならない
+
+##### 2. デザイン改善
+
+**メニュー項目へのアイコン追加**:
+```typescript
+import { Home, Building2, MapPin, Calendar } from 'lucide-react';
+
+const menuItems = [
+  { label: t.nav.home, href: '#home', icon: Home },
+  { label: t.nav.facilities, href: '#facilities', icon: Building2 },
+  { label: t.nav.location, href: '#location', icon: MapPin },
+  { label: t.nav.reserve, href: '...', external: true, icon: Calendar },
+];
+```
+
+**レンダリング**:
+```tsx
+{menuItems.map((item, index) => {
+  const Icon = item.icon;
+  return (
+    <a className="flex items-center justify-end gap-2">
+      <Icon size={18} />
+      <span>{item.label}</span>
+    </a>
+  );
+})}
+```
+
+**視覚効果**:
+- アイコンで各項目の役割を直感的に伝達
+- テキストの左側に配置（justify-end）
+- 18pxのコンパクトサイズ
+
+**背景濃度の向上**:
+- 変更: `bg-black/40` → `bg-black/90`
+- **理由**: スクロール位置によってはコンテンツが透けて文字が読みづらい
+- **効果**: 背景の透明度を下げることで可読性が大幅に向上
+- `backdrop-blur-md`は維持してモダンな印象を保持
+
+**z-index調整**:
+- 変更: デフォルト → `z-[60]`
+- **理由**: Floating Button (`z-50`) より前面に表示する必要があった
+- **効果**: メニューが常に最前面に表示され、UI階層が明確化
+
+##### 3. アニメーション強化
+
+**ステッガーアニメーションの実装**:
+
+**CSSキーフレーム定義** (`src/index.css`):
+```css
+@keyframes slideInStagger {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+```
+
+**メニュー項目への適用**:
+```tsx
+{menuItems.map((item, index) => (
+  <a
+    style={{
+      animation: isMobileMenuOpen
+        ? `slideInStagger 0.3s ease-out ${index * 0.1}s both`
+        : 'none'
+    }}
+  >
+    ...
+  </a>
+))}
+```
+
+**言語セレクターへの適用**:
+```tsx
+{/* Language見出し */}
+<div
+  style={{
+    animation: isMobileMenuOpen
+      ? `slideInStagger 0.3s ease-out ${menuItems.length * 0.1}s both`
+      : 'none'
+  }}
+>
+  <Globe size={16} />
+  <span>Language</span>
+</div>
+
+{/* 各言語ボタン */}
+{SUPPORTED_LANGUAGES.map((lang, index) => (
+  <button
+    style={{
+      animation: isMobileMenuOpen
+        ? `slideInStagger 0.3s ease-out ${(menuItems.length + 1 + index) * 0.1}s both`
+        : 'none'
+    }}
+  >
+    {LANGUAGE_NAMES[lang]}
+  </button>
+))}
+```
+
+**アニメーション順序**:
+1. Home (0.0s)
+2. Facilities (0.1s)
+3. Location (0.2s)
+4. Reserve (0.3s)
+5. Language見出し (0.4s)
+6. EN (0.5s)
+7. 日本語 (0.6s)
+8. 简体中文 (0.7s)
+9. 繁體中文 (0.8s)
+10. 한국어 (0.9s)
+
+**技術的工夫**:
+- `animation-fill-mode: both`で開始・終了状態を保持
+- `ease-out`イージングで自然な動き
+- 0.1秒間隔で段階的に表示
+- `isMobileMenuOpen`状態に応じてアニメーションをON/OFF
+
+**UX効果**:
+- 視覚的な流れを作り、メニューの階層を示唆
+- 静的な表示より印象的で洗練された演出
+- 各項目への注目を順番に促す
+
+##### 4. メニューレイアウトの調整
+
+**モバイルメニューの配置**:
+```tsx
+<div
+  ref={mobileMenuRef}
+  className={`md:hidden fixed top-16 right-0 z-[60] transition-all duration-300 ${
+    isMobileMenuOpen ? 'w-40' : 'w-0'
+  }`}
+  style={{ height: 'calc(100vh - 4rem)' }}
+>
+```
+
+**仕様**:
+- 固定配置（`fixed top-16 right-0`）
+- 高さは画面の最下部まで（`calc(100vh - 4rem)`）
+- 横幅は160px（`w-40`）に短縮
+- 右側からスライド展開
+
+#### ベストレートバッジの追加
+
+##### 1. 実装の背景
+
+**目的**:
+- 公式サイトでの予約が最も安いことをユーザーに伝える
+- 直接予約を促進してOTAの手数料を削減
+- コンバージョン率の向上
+
+**実装方針**:
+- 「保証」という言葉は使わず、「ベストレート」と表現
+- Check Availabilityボタンの右下に配置
+- 控えめながら目立つデザイン
+
+##### 2. 多言語対応（5言語）
+
+**翻訳ファイルへの追加**:
+
+**英語** (`src/i18n/locales/en.ts`):
+```typescript
+booking: {
+  checkAvailability: 'Check Availability',
+  bestRate: 'Best Rate on Official Site',
+}
+```
+
+**日本語** (`src/i18n/locales/ja.ts`):
+```typescript
+booking: {
+  checkAvailability: '空室確認',
+  bestRate: '公式サイトがベストレート',
+}
+```
+
+**中国語簡体字** (`src/i18n/locales/zh-cn.ts`):
+```typescript
+booking: {
+  checkAvailability: '查看空房',
+  bestRate: '官方网站最优价格',
+}
+```
+
+**中国語繁体字** (`src/i18n/locales/zh-tw.ts`):
+```typescript
+booking: {
+  checkAvailability: '查看空房',
+  bestRate: '官方網站最優價格',
+}
+```
+
+**韓国語** (`src/i18n/locales/ko.ts`):
+```typescript
+booking: {
+  checkAvailability: '예약 가능 여부 확인',
+  bestRate: '공식 사이트 최저가',
+}
+```
+
+**型定義の更新** (`src/i18n/types.ts`):
+```typescript
+booking: {
+  checkAvailability: string;
+  bestRate: string;  // 追加
+};
+```
+
+##### 3. UIデザイン
+
+**BookingButton.tsxの実装**:
+```tsx
+import { BadgeCheck } from 'lucide-react';
+
+<div className="max-w-md mx-auto">
+  {/* Check Availability ボタン */}
+  <a href={bookingUrl} ...>
+    {t.booking.checkAvailability}
+  </a>
+
+  {/* Best Rate Text */}
+  <div className="mt-2 flex items-center justify-end gap-2 px-2">
+    <BadgeCheck size={18} className="text-cyan-400" />
+    <span className="text-cyan-400 font-orbitron font-semibold text-xs md:text-sm tracking-wide">
+      {t.booking.bestRate}
+    </span>
+  </div>
+</div>
+```
+
+**デザイン仕様**:
+- **配置**: ボタンの右下（`mt-2`）、隙間は少なめ
+- **アイコン**: BadgeCheck（18px）
+- **カラー**: text-cyan-400（サイバーパンク風ブランドカラー）
+- **フォント**: font-orbitron（ブランド統一）
+- **サイズ**: モバイル text-xs、デスクトップ text-sm
+- **配置**: justify-end（右寄せ）
+- **間隔**: gap-2（アイコンとテキストの適度な間隔）
+
+**視覚的特徴**:
+- 枠や背景なしのシンプルなテキスト
+- シアンカラーでボタンの赤と対比
+- 控えめながらも存在感のあるデザイン
+- レスポンシブフォントサイズ
+
+##### 4. 技術実装の詳細
+
+**コンポーネント構造**:
+```tsx
+import { forwardRef } from 'react';
+import { BadgeCheck } from 'lucide-react';
+import { useTranslation } from '../i18n';
+
+const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
+  const { t } = useTranslation();
+  const bookingUrl = 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search';
+
+  return (
+    <section id="reserve" className="py-10 md:py-16 px-6" ref={ref}>
+      <div className="max-w-md mx-auto">
+        <a href={bookingUrl} ...>
+          {t.booking.checkAvailability}
+        </a>
+        <div className="mt-2 flex items-center justify-end gap-2 px-2">
+          <BadgeCheck size={18} className="text-cyan-400" />
+          <span className="text-cyan-400 font-orbitron font-semibold text-xs md:text-sm tracking-wide">
+            {t.booking.bestRate}
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+});
+```
+
+**型安全性**:
+- TypeScriptの型定義により、全言語での一貫性を保証
+- `t.booking.bestRate`が存在しない言語があればコンパイルエラー
+- IDEの自動補完で開発効率向上
+
+#### 技術的な工夫とベストプラクティス
+
+##### パフォーマンス最適化
+- **passive event listener**: スクロールパフォーマンス向上
+- **条件付きイベント登録**: メニューが開いている時のみリスナー追加
+- **クリーンアップ関数**: メモリリーク防止
+- **GPU アクセラレーション**: transform プロパティ使用
+
+##### コードの保守性
+- **useRef でDOM参照**: 直接的なDOM操作を避ける
+- **カスタムフックの活用**: useEffectでロジック分離
+- **型安全な翻訳管理**: TypeScriptで一貫性保証
+- **コンポーネントの責任分離**: 各コンポーネントが単一責任
+
+##### アクセシビリティ
+- **aria-label**: メニューボタンに説明追加
+- **セマンティックHTML**: 適切なHTML要素使用
+- **キーボードナビゲーション**: フォーカス可能な要素
+
+#### 成果と効果
+
+##### UX改善
+- **直感的なメニュー操作**: クリック外・スクロールで閉じる
+- **視覚的なフィードバック**: ステッガーアニメーション
+- **明確な階層**: アイコンとアニメーションで構造を示唆
+- **可読性向上**: 背景濃度調整で文字がくっきり
+
+##### コンバージョン最適化
+- **ベストレート訴求**: 直接予約の動機づけ
+- **5言語対応**: 国際的なユーザーへの訴求
+- **控えめなデザイン**: 押し付けがましくない配置
+- **ブランド統一**: サイバーパンク風デザインと調和
+
+##### 技術的達成
+- **型安全性**: TypeScriptによる一貫性保証
+- **パフォーマンス**: 最適化されたイベント処理
+- **保守性**: クリーンなコード構造
+- **拡張性**: 新機能追加が容易
+
+#### 変更ファイル一覧
+
+**コンポーネント**:
+- `src/components/Hero.tsx`: ヒーロー画像変更
+- `src/components/Facilities.tsx`: 画像順序入れ替え
+- `src/components/Navbar.tsx`: モバイルメニュー改善
+- `src/components/BookingButton.tsx`: ベストレートバッジ追加
+
+**翻訳ファイル**:
+- `src/i18n/types.ts`: 型定義追加
+- `src/i18n/locales/en.ts`: 英語翻訳追加
+- `src/i18n/locales/ja.ts`: 日本語翻訳追加
+- `src/i18n/locales/zh-cn.ts`: 中国語簡体字翻訳追加
+- `src/i18n/locales/zh-tw.ts`: 中国語繁体字翻訳追加
+- `src/i18n/locales/ko.ts`: 韓国語翻訳追加
+
+**スタイル**:
+- `src/index.css`: slideInStagger keyframes追加
+
+#### 今後の改善可能性
+
+**モバイルメニュー**:
+- Escキーでメニューを閉じる機能
+- フォーカストラップの実装
+- 現在のセクションのハイライト表示
+- メニュー開閉時のbody scroll lock
+
+**ベストレートバッジ**:
+- ホバー時の微妙なアニメーション
+- クリック時のパルス効果
+- A/Bテストによる配置最適化
+- コンバージョン率の測定
+
+**パフォーマンス**:
+- メニューアニメーションの最適化
+- イベントリスナーのthrottle/debounce
+- Intersection Observerの活用
+
+この実装により、Cross Base Shibuyaのモバイルユーザーエクスペリエンスが大幅に向上し、コンバージョン率の改善が期待できます。
