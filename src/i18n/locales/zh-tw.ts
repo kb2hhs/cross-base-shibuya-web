@@ -39,6 +39,7 @@ export const zhTW: Translations = {
   },
   booking: {
     checkAvailability: '查看空房',
+    bestRate: '官方網站最優價格',
   },
   floating: {
     reserve: '預訂',

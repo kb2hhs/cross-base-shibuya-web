@@ -39,6 +39,7 @@ export const en: Translations = {
   },
   booking: {
     checkAvailability: 'Check Availability',
+    bestRate: 'Best Rate on Official Site',
   },
   floating: {
     reserve: 'Reserve',

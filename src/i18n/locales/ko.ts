@@ -39,6 +39,7 @@ export const ko: Translations = {
   },
   booking: {
     checkAvailability: '예약 가능 여부 확인',
+    bestRate: '공식 사이트 최저가',
   },
   floating: {
     reserve: '예약',

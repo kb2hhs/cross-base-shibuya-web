@@ -39,6 +39,7 @@ export const ja: Translations = {
   },
   booking: {
     checkAvailability: '空室確認',
+    bestRate: '公式サイトがベストレート',
   },
   floating: {
     reserve: '予約',

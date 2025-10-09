@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import { BadgeCheck } from 'lucide-react';
 import { useTranslation } from '../i18n';
 
 const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
@@ -16,6 +17,14 @@ const BookingButton = forwardRef<HTMLElement>((_props, ref) => {
         >
           {t.booking.checkAvailability}
         </a>
+
+        {/* Best Rate Text */}
+        <div className="mt-2 flex items-center justify-end gap-2 px-2">
+          <BadgeCheck size={18} className="text-cyan-400" />
+          <span className="text-cyan-400 font-orbitron font-semibold text-xs md:text-sm tracking-wide">
+            {t.booking.bestRate}
+          </span>
+        </div>
       </div>
     </section>
   );

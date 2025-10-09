@@ -37,6 +37,7 @@ export type Translations = {
   };
   booking: {
     checkAvailability: string;
+    bestRate: string;
   };
   floating: {
     reserve: string;

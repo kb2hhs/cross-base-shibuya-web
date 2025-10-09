@@ -39,6 +39,7 @@ export const zhCN: Translations = {
   },
   booking: {
     checkAvailability: '查看空房',
+    bestRate: '官方网站最优价格',
   },
   floating: {
     reserve: '预订',

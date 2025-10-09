@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Menu, X, Globe, Home, Building2, MapPin, Calendar } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from '../i18n';
 import { SUPPORTED_LANGUAGES, LANGUAGE_NAMES, type Language } from '../i18n/types';
@@ -11,6 +11,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +22,45 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node) && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when scrolling
+  useEffect(() => {
+    const handleScrollClose = () => {
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      window.addEventListener('scroll', handleScrollClose, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollClose);
+    };
+  }, [isMobileMenuOpen]);
+
   const menuItems = [
-    { label: t.nav.home, href: '#home' },
-    { label: t.nav.facilities, href: '#facilities' },
-    { label: t.nav.location, href: '#location' },
-    { label: t.nav.reserve, href: 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search', external: true },
+    { label: t.nav.home, href: '#home', icon: Home },
+    { label: t.nav.facilities, href: '#facilities', icon: Building2 },
+    { label: t.nav.location, href: '#location', icon: MapPin },
+    { label: t.nav.reserve, href: 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search', external: true, icon: Calendar },
   ];
 
   const handleMenuClick = () => {
@@ -114,30 +149,46 @@ function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-96' : 'max-h-0'
+        ref={mobileMenuRef}
+        className={`md:hidden fixed top-16 right-0 z-60 transition-all duration-300 ${
+          isMobileMenuOpen ? 'w-40' : 'w-0'
         }`}
+        style={{ height: 'calc(100vh - 4rem)' }}
       >
-        <div className="px-4 pt-2 pb-4 space-y-2 bg-black/40 backdrop-blur-md">
-          {menuItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={handleMenuClick}
-              className="block py-2 text-white hover:text-cyan-400 font-orbitron font-medium transition-colors duration-200 text-right"
-              {...(item.external && { target: '_blank', rel: 'noopener' })}
-            >
-              {item.label}
-            </a>
-          ))}
+        <div className={`h-full px-4 pt-2 pb-4 space-y-2 bg-black/90 backdrop-blur-md overflow-hidden ${
+          isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+        }`}>
+          {menuItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={handleMenuClick}
+                className="flex items-center justify-end gap-2 py-2 text-white hover:text-cyan-400 font-orbitron font-medium transition-all duration-200"
+                style={{
+                  animation: isMobileMenuOpen ? `slideInStagger 0.3s ease-out ${index * 0.1}s both` : 'none'
+                }}
+                {...(item.external && { target: '_blank', rel: 'noopener' })}
+              >
+                <Icon size={18} />
+                <span>{item.label}</span>
+              </a>
+            );
+          })}
 
           {/* Mobile Language Selector */}
           <div className="border-t border-white/20 pt-2 mt-2">
-            <div className="flex items-center justify-end space-x-2 text-white/70 text-sm mb-2">
+            <div
+              className="flex items-center justify-end space-x-2 text-white/70 text-sm mb-2"
+              style={{
+                animation: isMobileMenuOpen ? `slideInStagger 0.3s ease-out ${menuItems.length * 0.1}s both` : 'none'
+              }}
+            >
               <Globe size={16} />
               <span className="font-orbitron">Language</span>
             </div>
-            {SUPPORTED_LANGUAGES.map((lang) => (
+            {SUPPORTED_LANGUAGES.map((lang, index) => (
               <button
                 key={lang}
                 onClick={() => handleLanguageChange(lang)}
@@ -146,6 +197,9 @@ function Navbar() {
                     ? 'text-cyan-400'
                     : 'text-white hover:text-cyan-400'
                 }`}
+                style={{
+                  animation: isMobileMenuOpen ? `slideInStagger 0.3s ease-out ${(menuItems.length + 1 + index) * 0.1}s both` : 'none'
+                }}
               >
                 {LANGUAGE_NAMES[lang]}
               </button>
