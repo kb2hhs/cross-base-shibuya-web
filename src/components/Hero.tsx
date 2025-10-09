@@ -24,10 +24,10 @@ function Hero() {
       >
         <div className="absolute inset-0">
           <div
-            className="glitch-image-bg absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/hero-main.webp')",
-              animation: 'kenburns 15s ease-in-out infinite alternate, image-glitch-filter 5s infinite, image-glitch-shift 5s infinite',
+              backgroundImage: "url('/facilities-living-area.webp')",
+              animation: 'kenburns 15s ease-in-out infinite alternate',
               transform: `translateY(${scrollY * 0.5}px)`
             }}
           />
@@ -36,8 +36,7 @@ function Hero() {
 
         <div className="relative z-10 text-center px-6">
           <h1
-            className="glitch-text text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold tracking-wide text-white uppercase"
-            data-text={t.hero.title}
+            className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold tracking-wide text-white uppercase"
             style={{
               textShadow: '0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.3)',
               transform: `translateY(${scrollY * -0.3}px)`

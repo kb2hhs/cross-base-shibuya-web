@@ -10,6 +10,11 @@ function Facilities() {
 
   const rooms = [
     {
+      image: '/facilities-living-area.webp',
+      title: t.facilities.livingArea.title,
+      description: t.facilities.livingArea.description,
+    },
+    {
       image: '/facilities-bedroom-1.webp',
       title: t.facilities.bedroom1.title,
       description: t.facilities.bedroom1.description,
@@ -18,11 +23,6 @@ function Facilities() {
       image: '/facilities-bedroom-2.webp',
       title: t.facilities.bedroom2.title,
       description: t.facilities.bedroom2.description,
-    },
-    {
-      image: '/facilities-living-area.webp',
-      title: t.facilities.livingArea.title,
-      description: t.facilities.livingArea.description,
     },
   ];
 
