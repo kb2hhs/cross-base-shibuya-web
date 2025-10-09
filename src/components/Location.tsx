@@ -27,7 +27,7 @@ function Location() {
         </p>
       </div>
 
-      <div className="w-full aspect-video overflow-hidden rounded-lg">
+      <div className="w-full aspect-video overflow-hidden">
         <iframe
           src="https://maps.google.com/maps?hl=en&q=cross base shibuya&t=&z=15&ie=UTF8&iwloc=B&output=embed"
           width="100%"
