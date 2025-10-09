@@ -23,7 +23,8 @@ function LocalizedApp({ language }: LocalizedAppProps) {
   return (
     <LanguageProvider language={language}>
       <SEOHead />
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen neon-bg">
+        <div className="neon-orbs" />
         <Navbar />
         <Hero />
         <Facilities />

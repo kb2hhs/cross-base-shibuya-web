@@ -12,9 +12,8 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
   const [isPressed, setIsPressed] = useState(false);
 
   return (
-    // mdサイズ以上で非表示にする (md:hidden)
     <div
-      className={`fixed bottom-6 right-4 z-50 md:hidden transition-opacity duration-300 ${isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      className={`fixed bottom-6 right-4 z-[100] transition-opacity duration-300 ${isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
     >
       <a
         href={bookingUrl}
