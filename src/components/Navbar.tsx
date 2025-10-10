@@ -90,7 +90,7 @@ function Navbar() {
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
             <img
-              src="/施設ロゴ_渋谷共有用.png"
+              src="/施設ロゴ_渋谷共有用_ロゴのみ.png"
               alt="Cross Base Shibuya"
               className="h-10 w-auto"
             />
