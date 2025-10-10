@@ -5,7 +5,10 @@ import useIntersectionObserver from './useIntersectionObserver';
 function Location() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const isVisible = useIntersectionObserver(sectionRef, {
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   return (
     <section id="location" ref={sectionRef} className={`section-container fade-in ${isVisible ? 'visible' : ''}`}>

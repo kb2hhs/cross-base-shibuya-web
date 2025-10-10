@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { LanguageProvider } from '../i18n';
 import type { Language } from '../i18n/types';
 import SEOHead from '../components/SEOHead';
@@ -19,6 +19,30 @@ function LocalizedApp({ language }: LocalizedAppProps) {
   const isBookingButtonVisible = useIntersectionObserver(bookingButtonRef, {
     rootMargin: '0px 0px -100px 0px',
   });
+
+  // Pause neon background animation during scroll for performance
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout | null = null;
+
+    const handleScroll = () => {
+      // Pause animation during scroll
+      document.documentElement.style.setProperty('--neon-animation-state', 'paused');
+
+      // Clear previous timeout
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+
+      // Resume animation 150ms after scroll ends
+      scrollTimeout = setTimeout(() => {
+        document.documentElement.style.setProperty('--neon-animation-state', 'running');
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <LanguageProvider language={language}>

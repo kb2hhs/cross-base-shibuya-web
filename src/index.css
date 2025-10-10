@@ -216,7 +216,8 @@ body {
     background: #000000;
     position: relative;
     overflow: hidden;
-    --neon-opacity: 0.6;
+    --neon-opacity: 0.2;
+    --neon-size-scale: 0.45;  /* ネオンサイズの倍率（1.0 = 100%、1.5 = 150%） */
   }
 
   .neon-bg::after {
@@ -233,7 +234,7 @@ body {
     background-size: 100% 400px;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.2;
+    opacity: 0.1;
   }
 
   .neon-bg .neon-orbs {
@@ -241,27 +242,30 @@ body {
     position: fixed;
     inset: 0;
     background-image:
-      radial-gradient(circle 150px at 10% 5%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 130px at 50% 8%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 140px at 90% 12%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 120px at 20% 18%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 135px at 70% 22%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 125px at 35% 28%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 145px at 85% 35%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 115px at 15% 42%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 140px at 55% 48%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 130px at 75% 55%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 125px at 25% 62%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 135px at 92% 68%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 120px at 42% 72%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 145px at 8% 78%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 130px at 65% 82%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 115px at 30% 88%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 140px at 80% 92%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 125px at 48% 95%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%);
-    filter: blur(50px);
+      /* Hero下・Facilities見出し周辺 (6個) */
+      radial-gradient(circle calc(180px * var(--neon-size-scale)) at 30% 33%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(190px * var(--neon-size-scale)) at 70% 36%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(160px * var(--neon-size-scale)) at 10% 39%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(200px * var(--neon-size-scale)) at 50% 42%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(170px * var(--neon-size-scale)) at 90% 44%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(180px * var(--neon-size-scale)) at 25% 46%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
+
+      /* Facilities画像間の余白 (12個) */
+      radial-gradient(circle calc(150px * var(--neon-size-scale)) at 20% 50%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(160px * var(--neon-size-scale)) at 80% 53%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(140px * var(--neon-size-scale)) at 45% 56%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(155px * var(--neon-size-scale)) at 65% 59%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(145px * var(--neon-size-scale)) at 10% 62%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(165px * var(--neon-size-scale)) at 90% 65%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(150px * var(--neon-size-scale)) at 35% 68%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(160px * var(--neon-size-scale)) at 70% 70%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(140px * var(--neon-size-scale)) at 15% 72%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(155px * var(--neon-size-scale)) at 85% 74%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(145px * var(--neon-size-scale)) at 50% 76%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(150px * var(--neon-size-scale)) at 25% 78%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%);
+    filter: blur(20px);
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
   }
 
   .neon-bg::before {
@@ -269,38 +273,25 @@ body {
     position: absolute;
     inset: 0;
     background-image:
-      radial-gradient(circle 130px at 15% 20%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 120px at 85% 15%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 180px at 50% 50%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 100px at 30% 70%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 140px at 75% 80%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 110px at 20% 45%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 130px at 65% 35%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 90px at 45% 85%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 150px at 40% 25%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 110px at 92% 45%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 130px at 55% 65%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 95px at 10% 55%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 120px at 70% 25%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 105px at 25% 90%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 140px at 88% 60%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 115px at 35% 40%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 125px at 12% 32%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 105px at 48% 18%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 135px at 78% 52%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 115px at 28% 58%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 100px at 62% 72%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 120px at 18% 78%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 110px at 52% 38%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 95px at 82% 28%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 130px at 38% 62%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 105px at 68% 48%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 115px at 42% 12%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
-      radial-gradient(circle 125px at 8% 68%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%);
-    filter: blur(50px);
+      /* Location周辺 (6個) */
+      radial-gradient(circle calc(180px * var(--neon-size-scale)) at 25% 80%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(190px * var(--neon-size-scale)) at 75% 82%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(200px * var(--neon-size-scale)) at 50% 84%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(170px * var(--neon-size-scale)) at 15% 86%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(180px * var(--neon-size-scale)) at 85% 88%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(160px * var(--neon-size-scale)) at 40% 90%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%),
+
+      /* BookingButton・ページ下部 (6個) */
+      radial-gradient(circle calc(170px * var(--neon-size-scale)) at 30% 92%, rgba(6, 182, 212, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(180px * var(--neon-size-scale)) at 70% 93%, rgba(185, 113, 252, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(160px * var(--neon-size-scale)) at 10% 94%, rgba(244, 42, 42, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(190px * var(--neon-size-scale)) at 90% 95%, rgba(236, 72, 154, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(175px * var(--neon-size-scale)) at 45% 97%, rgba(168, 85, 247, var(--neon-opacity)) 0%, transparent 60%),
+      radial-gradient(circle calc(165px * var(--neon-size-scale)) at 65% 98%, rgba(59, 131, 246, var(--neon-opacity)) 0%, transparent 60%);
+    filter: blur(20px);
     pointer-events: none;
     z-index: 0;
-    animation: neonFloat1 10s ease-in-out infinite;
+    animation: var(--neon-animation-state, neonFloat1 10s ease-in-out infinite);
   }
 
   .neon-bg > *:not(.neon-orbs):not(nav):not([class*="fixed"]) {

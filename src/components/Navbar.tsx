@@ -14,13 +14,26 @@ function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (timeoutId !== null) return;
+
+      timeoutId = setTimeout(() => {
+        setIsScrolled(window.scrollY > 50);
+        if (isMobileMenuOpen) {
+          setIsMobileMenuOpen(false);
+        }
+        timeoutId = null;
+      }, 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      if (timeoutId !== null) clearTimeout(timeoutId);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMobileMenuOpen]);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -39,22 +52,6 @@ function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Close mobile menu when scrolling
-  useEffect(() => {
-    const handleScrollClose = () => {
-      if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isMobileMenuOpen) {
-      window.addEventListener('scroll', handleScrollClose, { passive: true });
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleScrollClose);
-    };
-  }, [isMobileMenuOpen]);
 
   const menuItems = [
     { label: t.nav.home, href: '#home', icon: Home },

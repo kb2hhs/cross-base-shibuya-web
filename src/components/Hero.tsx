@@ -6,12 +6,28 @@ function Hero() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    let rafId: number | null = null;
+    let lastScrollY = 0;
+
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (rafId !== null) return;
+
+      rafId = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        // Only update if scroll changed by more than 1px to reduce unnecessary renders
+        if (Math.abs(currentScrollY - lastScrollY) > 1) {
+          setScrollY(currentScrollY);
+          lastScrollY = currentScrollY;
+        }
+        rafId = null;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
