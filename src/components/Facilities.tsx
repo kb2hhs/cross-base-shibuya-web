@@ -1,12 +1,10 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from '../i18n';
-import useIntersectionObserver from './useIntersectionObserver';
+import useMultipleIntersectionObserver from './useMultipleIntersectionObserver';
 
 function Facilities() {
   const { t } = useTranslation();
-  const sectionRef = useRef<HTMLElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const [carouselIndex, setCarouselIndex] = useState<Record<number, number>>({});
   const [touchStart, setTouchStart] = useState<Record<number, number>>({});
@@ -44,6 +42,16 @@ function Facilities() {
       description: t.facilities.bathroom.description,
     },
   ];
+
+  // Initialize multiple intersection observer for all cards
+  const { setRef, visibleItems } = useMultipleIntersectionObserver<HTMLDivElement>(
+    rooms.length,
+    {
+      threshold: 0.1,
+      rootMargin: '50px',
+      triggerOnce: true,
+    }
+  );
 
   const handleImageLoad = (index: number) => {
     setLoadedImages(prev => new Set(prev).add(index));
@@ -97,7 +105,7 @@ function Facilities() {
   };
 
   return (
-    <section id="facilities" ref={sectionRef} className={`section-container slide-in-right ${isVisible ? 'visible' : ''}`}>
+    <section id="facilities" className="section-container">
       <h2 className="section-heading">
         {t.facilities.heading}
       </h2>
@@ -110,9 +118,20 @@ function Facilities() {
         {rooms.map((room, index) => {
           const currentSlide = carouselIndex[index] || 0;
           const hasCarousel = room.images && room.images.length > 1;
+          const isVisible = visibleItems.has(index);
+          const isEven = index % 2 === 0;
+          const animationClass = isEven ? 'fade-slide-left' : 'fade-slide-right';
 
           return (
-            <div key={index} className="space-y-4">
+            <div
+              key={index}
+              ref={setRef(index)}
+              className={`space-y-4 ${animationClass} ${isVisible ? 'visible' : ''}`}
+              style={{
+                animationDelay: `${index * 100}ms`,
+                willChange: isVisible ? 'auto' : 'opacity, transform'
+              }}
+            >
               <div className="relative w-full aspect-[4/3] image-zoom">
                 {!loadedImages.has(index) && (
                   <div className="skeleton w-full h-full absolute inset-0" />
