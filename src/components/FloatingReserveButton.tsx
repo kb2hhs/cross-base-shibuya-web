@@ -24,15 +24,16 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
         onMouseLeave={() => setIsPressed(false)}
         className={`
           bounce-icon flex items-center justify-center relative
-          text-white text-xs font-orbitron font-bold tracking-[0.3rem]
+          text-white text-xs font-orbitron font-bold tracking-[0.08em]
           pl-3 pr-4 py-3 rounded-lg
-          border-[5px] border-white
+          border-[3px] border-white
+          bg-black/80
           transition-all duration-300
           ${isPressed ? 'scale-95' : 'scale-100'}
         `}
       style={{
           boxShadow: '0 0 5px #fff, inset 0 0 5px #fff, 0 0 5px #FF5722, 0 0 5px #FF5722, inset 0 0 20px #FF5722',
-          textShadow: '0 0 3px #fff, 0 0 5px #fff, 0 0 10px #FF5722, 0 0 10px #FF5722, 0 0 20px #FF5722',
+          textShadow: '0 0 3px #fff, 0 0 5px #fff, 0 0 10px #FF5722, 0 0 10px #FF5722, 0 0 10px #FF5722',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.boxShadow = '0 0 20px #fff, inset 0 0 20px #fff, 0 0 20px #FF5722, 0 0 20px #FF5722, inset 0 0 20px #FF5722';
@@ -48,11 +49,12 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
           style={{ overflow: 'visible' }}
         >
           <span
-            className="absolute w-4 h-4 rounded-full -translate-x-1/2 -translate-y-1/2"
+            className="absolute w-4 h-4 rounded-full"
             style={{
               background: 'radial-gradient(circle, #fff 0%, #FF5722 50%, transparent 70%)',
               boxShadow: '0 0 10px #FF5722, 0 0 20px #FF5722',
-              animation: 'borderOrb2 3s linear infinite',
+              offsetPath: 'inset(-1.5px round 8px)',
+              animation: 'borderOrb2 3s linear infinite, orbBlink 1s ease-in-out infinite',
             }}
           />
         </span>
@@ -60,7 +62,8 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
         <HiChevronDoubleRight
           className="mr-1.5 h-5 w-5 transition-transform flex-shrink-0"
           style={{
-            filter: 'drop-shadow(0 0 10px #fff) drop-shadow(0 0 10px #FF5722) drop-shadow(0 0 10px #FF5722)'
+            filter: 'drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px #fff) drop-shadow(0 0 1px #FF5722) drop-shadow(0 0 3px #FF5722)',
+            strokeWidth: '0.6',
           }}
         />
         <span className="transition-all flex flex-col">

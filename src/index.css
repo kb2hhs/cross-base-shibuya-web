@@ -206,29 +206,17 @@ body {
   }
 
   @keyframes borderOrb2 {
-    /* Top edge: 0% - 40% (横長) */
-    0% {
-      top: -2.5px;
-      left: -2.5px;
+    to {
+      offset-distance: 100%;
     }
-    40% {
-      top: -2.5px;
-      left: calc(100% + 2.5px);
+  }
+
+  @keyframes orbBlink {
+    0%, 100% {
+      opacity: 1;
     }
-    /* Right edge: 40% - 52.5% (縦短) */
-    52.5% {
-      top: calc(100% + 2.5px);
-      left: calc(100% + 2.5px);
-    }
-    /* Bottom edge: 52.5% - 92.5% (横長) */
-    92.5% {
-      top: calc(100% + 2.5px);
-      left: -2.5px;
-    }
-    /* Left edge: 92.5% - 100% (縦短) */
-    100% {
-      top: -2.5px;
-      left: -2.5px;
+    50% {
+      opacity: 0.3;
     }
   }
 
