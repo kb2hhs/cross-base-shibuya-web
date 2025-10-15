@@ -63,7 +63,7 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
           className="mr-1.5 h-5 w-5 transition-transform flex-shrink-0"
           style={{
             filter: 'drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px #fff) drop-shadow(0 0 1px #FF5722) drop-shadow(0 0 3px #FF5722)',
-            strokeWidth: '0.6',
+            strokeWidth: '0.5',
           }}
         />
         <span className="transition-all flex flex-col">
