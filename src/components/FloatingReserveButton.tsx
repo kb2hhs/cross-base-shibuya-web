@@ -1,6 +1,6 @@
 import { HiChevronDoubleRight } from "react-icons/hi2";
-import { useState } from "react";
 import { useTranslation } from '../i18n';
+import { useNeonButton } from '../hooks/useNeonButton';
 
 interface FloatingReserveButtonProps {
   isHidden?: boolean;
@@ -9,7 +9,12 @@ interface FloatingReserveButtonProps {
 function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps) {
   const { t } = useTranslation();
   const bookingUrl = 'https://hito-koto.tokyo/crossbase-shibuya?tripla_booking_widget_open=search';
-  const [isPressed, setIsPressed] = useState(false);
+  const { isPressed, pressHandlers, getNeonHandlers } = useNeonButton();
+
+  const neonHandlers = getNeonHandlers(
+    '0 0 10px #fff, inset 0 0 10px #fff, 0 0 10px #FF5722, 0 0 10px #FF5722, inset 0 0 20px #FF5722',
+    '0 0 20px #fff, inset 0 0 20px #fff, 0 0 20px #FF5722, 0 0 20px #FF5722, inset 0 0 20px #FF5722'
+  );
 
   return (
     <div
@@ -19,9 +24,8 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
         href={bookingUrl}
         target="_blank"
         rel="noopener"
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
-        onMouseLeave={() => setIsPressed(false)}
+        {...pressHandlers}
+        {...neonHandlers}
         className={`
           bounce-icon flex items-center justify-center relative
           text-white text-xs font-orbitron font-bold tracking-[0.08em]
@@ -31,16 +35,9 @@ function FloatingReserveButton({ isHidden = false }: FloatingReserveButtonProps)
           transition-all duration-300
           ${isPressed ? 'scale-95' : 'scale-100'}
         `}
-      style={{
+        style={{
           boxShadow: '0 0 5px #fff, inset 0 0 5px #fff, 0 0 5px #FF5722, 0 0 5px #FF5722, inset 0 0 20px #FF5722',
           textShadow: '0 0 3px #fff, 0 0 5px #fff, 0 0 10px #FF5722, 0 0 10px #FF5722, 0 0 10px #FF5722',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = '0 0 20px #fff, inset 0 0 20px #fff, 0 0 20px #FF5722, 0 0 20px #FF5722, inset 0 0 20px #FF5722';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = '0 0 10px #fff, inset 0 0 10px #fff, 0 0 10px #FF5722, 0 0 10px #FF5722, inset 0 0 20px #FF5722';
-          setIsPressed(false);
         }}
       >
         {/* Animated neon orbs on border */}

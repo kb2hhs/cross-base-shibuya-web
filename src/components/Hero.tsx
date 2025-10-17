@@ -5,6 +5,7 @@ function Hero() {
   const { t } = useTranslation();
   const [scrollY, setScrollY] = useState(0);
 
+  // Scroll parallax effect
   useEffect(() => {
     let rafId: number | null = null;
     let lastScrollY = 0;
@@ -54,7 +55,7 @@ function Hero() {
           <h1
             className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold tracking-wide text-white uppercase"
             style={{
-              textShadow: '0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.3)',
+              textShadow: '0 0 3px #fff, 0 0 10px #FF5722',
               transform: `translateY(${scrollY * -0.3}px)`
             }}
           >
