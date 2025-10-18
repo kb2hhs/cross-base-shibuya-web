@@ -43,7 +43,7 @@ function Hero() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/facilities-living-area.webp')",
+              backgroundImage: "url('/hero-main.webp')",
               animation: 'kenburns 15s ease-in-out infinite alternate',
               transform: `translateY(${scrollY * 0.5}px)`
             }}
@@ -55,7 +55,7 @@ function Hero() {
           <h1
             className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold tracking-wide text-white uppercase"
             style={{
-              textShadow: '0 0 3px #fff, 0 0 10px #FF5722',
+              textShadow: '0 0 5px #fff, 0 0 8px #FF5722',
               transform: `translateY(${scrollY * -0.3}px)`
             }}
           >

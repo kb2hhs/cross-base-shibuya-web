@@ -4,6 +4,7 @@ import type { Language } from '../i18n/types';
 import SEOHead from '../components/SEOHead';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import Ratings from '../components/Ratings';
 import Facilities from '../components/Facilities';
 import Location from '../components/Location';
 import BookingButton from '../components/BookingButton';
@@ -51,6 +52,7 @@ function LocalizedApp({ language }: LocalizedAppProps) {
         <div className="neon-orbs" />
         <Navbar />
         <Hero />
+        <Ratings />
         <Facilities />
         <Location />
         <BookingButton ref={bookingButtonRef} />
