@@ -114,24 +114,41 @@ function Facilities() {
         {t.facilities.description}
       </p>
 
-      <div className="space-y-12 md:space-y-16">
+      <div className="space-y-16 md:space-y-20">
         {rooms.map((room, index) => {
           const currentSlide = carouselIndex[index] || 0;
           const hasCarousel = room.images && room.images.length > 1;
           const isVisible = visibleItems.has(index);
           const isEven = index % 2 === 0;
           const animationClass = isEven ? 'fade-slide-left' : 'fade-slide-right';
+          const isLastItem = index === rooms.length - 1;
 
           return (
-            <div
-              key={index}
-              ref={setRef(index)}
-              className={`space-y-4 ${animationClass} ${isVisible ? 'visible' : ''}`}
-              style={{
-                animationDelay: `${index * 100}ms`,
-                willChange: isVisible ? 'auto' : 'opacity, transform'
-              }}
-            >
+            <div key={index}>
+              {/* Divider before first item */}
+              {index === 0 && (
+                <div className="mb-12 md:mb-16 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+              )}
+
+              <div
+                ref={setRef(index)}
+                className={`space-y-4 ${animationClass} ${isVisible ? 'visible' : ''}`}
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  willChange: isVisible ? 'auto' : 'opacity, transform'
+                }}
+              >
+              <div className="text-center">
+                <h3 className="text-xl md:text-2xl font-orbitron font-semibold text-white tracking-wide mb-1">
+                  {room.title}
+                </h3>
+                {room.description && (
+                  <p className="section-content text-gray-400 font-light">
+                    {room.description}
+                  </p>
+                )}
+              </div>
+
               <div className="relative w-full aspect-[4/3] image-zoom">
                 {!loadedImages.has(index) && (
                   <div className="skeleton w-full h-full absolute inset-0" />
@@ -213,17 +230,12 @@ function Facilities() {
                   </>
                 )}
               </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-orbitron font-semibold text-white tracking-wide mb-1">
-                  {room.title}
-                </h3>
-                {room.description && (
-                  <p className="section-content text-gray-400 font-light">
-                    {room.description}
-                  </p>
-                )}
               </div>
+
+              {/* Divider */}
+              {!isLastItem && (
+                <div className="mt-12 md:mt-16 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+              )}
             </div>
           );
         })}
