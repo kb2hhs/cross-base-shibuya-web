@@ -17,27 +17,64 @@ function Facilities() {
     description: string;
   }> = [
     {
-      image: '/facilities-living-area.webp',
+      image: '/floor_plan/fc24db0b-71e9-43e9-b6b9-b62c8b3697e2.jpg',
+      title: t.facilities.floorPlan.title,
+      description: t.facilities.floorPlan.description,
+    },
+    {
+      images: [
+        '/living_resized/1_Z9S_3201.jpg',
+        '/living_resized/Z9S_1910.jpg',
+        '/living_resized/Z9S_2115.jpg',
+        '/living_resized/Z9S_3231.jpg',
+        '/living_resized/Z9S_3275.jpg',
+        '/living_resized/Z9S_3307.jpg',
+        '/living_resized/Z9S_3313.jpg',
+      ],
       title: t.facilities.livingArea.title,
       description: t.facilities.livingArea.description,
     },
     {
-      image: '/facilities-bedroom-1.webp',
+      images: [
+        '/bedroom1_resized/1_Z9S_3341-2.jpg',
+        '/bedroom1_resized/Z9S_1688.jpg',
+        '/bedroom1_resized/Z9S_1700.jpg',
+        '/bedroom1_resized/Z9S_3340.jpg',
+        '/bedroom1_resized/Z9S_3350.jpg',
+      ],
       title: t.facilities.bedroom1.title,
       description: t.facilities.bedroom1.description,
     },
     {
-      image: '/facilities-bedroom-2.webp',
+      images: [
+        '/bedroom2_resized/1_Z9S_1649.jpg',
+        '/bedroom2_resized/Z9S_1613.jpg',
+        '/bedroom2_resized/Z9S_1628.jpg',
+        '/bedroom2_resized/Z9S_1655.jpg',
+        '/bedroom2_resized/Z9S_1666.jpg',
+        '/bedroom2_resized/Z9S_1672.jpg',
+      ],
       title: t.facilities.bedroom2.title,
       description: t.facilities.bedroom2.description,
     },
     {
-      image: '/kitchen_Z9S_3124.webp',
+      images: [
+        '/kitchen_resized/1_Z9S_0161.jpg',
+        '/kitchen_resized/Z9S_0176.jpg',
+        '/kitchen_resized/Z9S_3123.jpg',
+      ],
       title: t.facilities.kitchen.title,
       description: t.facilities.kitchen.description,
     },
     {
-      images: ['/shower_Z9S_1743.webp', '/laundry_Z9S_1724.webp'],
+      images: [
+        '/bath_resized/1_Z9S_1743.jpg',
+        '/bath_resized/Z9S_1731.jpg',
+        '/bath_resized/Z9S_1756.jpg',
+        '/bath_resized/Z9S_1792.jpg',
+        '/bath_resized/Z9S_1799.jpg',
+        '/bath_resized/Z9S_1809.jpg',
+      ],
       title: t.facilities.bathroom.title,
       description: t.facilities.bathroom.description,
     },
@@ -127,12 +164,12 @@ function Facilities() {
             <div key={index}>
               {/* Divider before first item */}
               {index === 0 && (
-                <div className="mb-12 md:mb-16 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                <div className="mb-8 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
               )}
 
               <div
                 ref={setRef(index)}
-                className={`space-y-4 ${animationClass} ${isVisible ? 'visible' : ''}`}
+                className={`space-y-8 ${animationClass} ${isVisible ? 'visible' : ''}`}
                 style={{
                   animationDelay: `${index * 100}ms`,
                   willChange: isVisible ? 'auto' : 'opacity, transform'
@@ -234,7 +271,7 @@ function Facilities() {
 
               {/* Divider */}
               {!isLastItem && (
-                <div className="mt-12 md:mt-16 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
               )}
             </div>
           );

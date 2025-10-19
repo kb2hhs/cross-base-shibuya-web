@@ -20,7 +20,7 @@ function Location() {
         {t.location.description}
       </p>
 
-      <div className="mb-8">
+      <div className="mb-4">
         <p className="section-content">
           <span className="section-text-highlight">{t.location.addressLabel}</span>
           <br />
@@ -28,6 +28,17 @@ function Location() {
           <br />
           {t.location.addressLine2}
         </p>
+      </div>
+
+      <div className="mb-4">
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=cross+base+shibuya"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
+        >
+          Google Maps
+        </a>
       </div>
 
       <div className="w-full aspect-video overflow-hidden">

@@ -17,6 +17,10 @@ export const ko: Translations = {
   facilities: {
     heading: '시설',
     description: '시부야역에서 6분 거리. 도심 한복판에서 110㎡의 공간을 독점으로 즐기세요! 침실 2개로 최대 14명 수용 가능.',
+    floorPlan: {
+      title: '평면도',
+      description: '넓은 110㎡ 평면도. 침실 2개, 거실, 주방, 욕실을 갖추고 있습니다.',
+    },
     bedroom1: {
       title: '침실 1',
       description: '더블 침대 2개, 접이식 더블 매트리스 1개',

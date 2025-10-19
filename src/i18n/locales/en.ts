@@ -17,6 +17,10 @@ export const en: Translations = {
   facilities: {
     heading: 'Facilities',
     description: '6 minutes from Shibuya Station. Enjoy an entire 110㎡ floor all to yourself in the heart of the city! Two bedrooms accommodate up to 14 people.',
+    floorPlan: {
+      title: 'Floor Plan',
+      description: 'Spacious 110㎡ floor plan featuring two bedrooms, living area, kitchen, and bathroom.',
+    },
     bedroom1: {
       title: 'Bedroom 1',
       description: '2 double beds, 1 foldable double mattress',

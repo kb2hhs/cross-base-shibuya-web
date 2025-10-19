@@ -17,6 +17,10 @@ export const ja: Translations = {
   facilities: {
     heading: '施設案内',
     description: '渋谷駅から徒歩6分。都心の一等地で110㎡のフロアを丸ごと貸切！2つのベッドルームで最大14名様までご利用いただけます。',
+    floorPlan: {
+      title: '間取り図',
+      description: '110㎡の広々としたフロアプラン。2つのベッドルーム、リビングエリア、キッチン、バスルームを完備。',
+    },
     bedroom1: {
       title: 'ベッドルーム 1',
       description: 'ダブルベッド2台、折りたたみ式ダブルマットレス1組',

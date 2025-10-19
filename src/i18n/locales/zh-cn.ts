@@ -17,6 +17,10 @@ export const zhCN: Translations = {
   facilities: {
     heading: '设施',
     description: '距离涩谷站6分钟。在市中心享受整整110㎡的楼层！两间卧室最多可容纳14人。',
+    floorPlan: {
+      title: '平面图',
+      description: '宽敞的110㎡平面图，配备两间卧室、起居区、厨房和浴室。',
+    },
     bedroom1: {
       title: '卧室 1',
       description: '2张双人床，1张可折叠双人床垫',

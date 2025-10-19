@@ -39,7 +39,7 @@ function Ratings() {
             className="block w-32 md:w-40 lg:w-48"
           >
             <img
-              src="/bnb-logo-2.png"
+              src="/bnb-logo-3.png"
               alt="Airbnb Rating 5.0"
               className="w-full h-auto object-contain hover:opacity-80 transition-opacity duration-300"
             />
@@ -65,7 +65,7 @@ function Ratings() {
             className="block w-32 md:w-40 lg:w-48"
           >
             <img
-              src="/booking-logo-3.png"
+              src="/booking-logo-4.png"
               alt="Booking.com Rating 10.0"
               className="w-full h-auto object-contain hover:opacity-80 transition-opacity duration-300"
             />

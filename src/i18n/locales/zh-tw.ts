@@ -17,6 +17,10 @@ export const zhTW: Translations = {
   facilities: {
     heading: '設施',
     description: '距離澀谷站6分鐘。在市中心享受整整110㎡的樓層！兩間臥室最多可容納14人。',
+    floorPlan: {
+      title: '平面圖',
+      description: '寬敞的110㎡平面圖，配備兩間臥室、起居區、廚房和浴室。',
+    },
     bedroom1: {
       title: '臥室 1',
       description: '2張雙人床，1張可折疊雙人床墊',

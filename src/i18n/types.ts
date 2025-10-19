@@ -15,6 +15,10 @@ export type Translations = {
   facilities: {
     heading: string;
     description: string;
+    floorPlan: {
+      title: string;
+      description: string;
+    };
     bedroom1: {
       title: string;
       description: string;
