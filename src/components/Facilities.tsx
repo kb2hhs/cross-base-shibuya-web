@@ -17,11 +17,6 @@ function Facilities() {
     description: string;
   }> = [
     {
-      image: '/floor_plan/fc24db0b-71e9-43e9-b6b9-b62c8b3697e2.jpg',
-      title: t.facilities.floorPlan.title,
-      description: t.facilities.floorPlan.description,
-    },
-    {
       images: [
         '/living_resized/1_Z9S_3201.jpg',
         '/living_resized/Z9S_1910.jpg',
@@ -77,6 +72,11 @@ function Facilities() {
       ],
       title: t.facilities.bathroom.title,
       description: t.facilities.bathroom.description,
+    },
+    {
+      image: '/floor_plan/fc24db0b-71e9-43e9-b6b9-b62c8b3697e2.jpg',
+      title: t.facilities.floorPlan.title,
+      description: t.facilities.floorPlan.description,
     },
   ];
 
