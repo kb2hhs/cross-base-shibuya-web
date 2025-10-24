@@ -10,6 +10,7 @@ function App() {
         <Route path="/zh-cn" element={<LocalizedApp language="zh-cn" />} />
         <Route path="/zh-tw" element={<LocalizedApp language="zh-tw" />} />
         <Route path="/ko" element={<LocalizedApp language="ko" />} />
+        <Route path="/pt" element={<LocalizedApp language="pt" />} />
       </Routes>
     </BrowserRouter>
   );

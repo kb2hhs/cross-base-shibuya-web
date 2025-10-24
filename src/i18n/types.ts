@@ -60,9 +60,9 @@ export type Translations = {
   };
 };
 
-export type Language = 'en' | 'ja' | 'zh-cn' | 'zh-tw' | 'ko';
+export type Language = 'en' | 'ja' | 'zh-cn' | 'zh-tw' | 'ko' | 'pt';
 
-export const SUPPORTED_LANGUAGES: readonly Language[] = ['en', 'ja', 'zh-cn', 'zh-tw', 'ko'] as const;
+export const SUPPORTED_LANGUAGES: readonly Language[] = ['en', 'ja', 'zh-cn', 'zh-tw', 'ko', 'pt'] as const;
 
 export const LANGUAGE_NAMES: Record<Language, string> = {
   'en': 'EN',
@@ -70,4 +70,5 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
   'zh-cn': '简体中文',
   'zh-tw': '繁體中文',
   'ko': '한국어',
+  'pt': 'Português',
 };

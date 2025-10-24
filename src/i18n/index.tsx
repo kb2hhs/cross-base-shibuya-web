@@ -5,6 +5,7 @@ import { ja } from './locales/ja';
 import { zhCN } from './locales/zh-cn';
 import { zhTW } from './locales/zh-tw';
 import { ko } from './locales/ko';
+import { pt } from './locales/pt';
 
 // 翻訳データのマップ
 const translations: Record<Language, Translations> = {
@@ -13,6 +14,7 @@ const translations: Record<Language, Translations> = {
   'zh-cn': zhCN,
   'zh-tw': zhTW,
   ko,
+  pt,
 };
 
 // Context型定義
